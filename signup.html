@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="asset/css/login.css" />
+    <link rel="stylesheet" href="asset/css/signup.css" />
+
     <link rel="stylesheet" href="asset/css/index.css" />
 
     <link
@@ -12,27 +13,35 @@
       href="https://fonts.googleapis.com/css?family=Quicksand"
     />
 
-    <title>Login</title>
+    <title>Đăng Ký</title>
   </head>
   <body>
     <div class="wapper">
-      <div class="wapper-heading mb-20">
-        <img src="asset/images/logo.webp" style="max-width: 120px" alt="" />
-
-        <h2>Đăng Nhập</h2>
+      <div class="wapper-heading pb-20">
+        <h1>Đăng Ký</h1>
       </div>
-      <form onsubmit="login()">
+      <form onsubmit="signup()">
         <div class="input__field">
           <input id="username" type="text" placeholder="Tên đăng nhập" />
         </div>
 
         <div class="input__field">
+          <input id="email" type="text" placeholder="Email" />
+        </div>
+        <div class="input__field">
           <input id="password" type="password" placeholder="Mật khẩu" />
         </div>
-        <a href="signup.html" class="signup-link mr-10">Đăng ký</a>
-        <button class="btn btn-login" style="color: white">Đăng nhập</button>
+        <div class="input__field">
+          <input
+            id="confirmPassword"
+            type="password"
+            placeholder="Xác nhận mật khẩu"
+          />
+        </div>
+        <a href="login.html" class="login-link mr-30">Đăng nhập</a>
+        <button class="btn btn-signup" style="color: white">Đăng ký</button>
       </form>
     </div>
-    <script src="asset/js/login.js"></script>
+    <script src="asset/js/signup.js"></script>
   </body>
 </html>
