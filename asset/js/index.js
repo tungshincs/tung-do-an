@@ -4,6 +4,26 @@ $(document).ready(function () {
   });
 });
 
+let items = document.querySelectorAll(".item-show-top");
+
+document.addEventListener("scroll", (event) => {
+  items.forEach((item) => {
+    if (item.offsetTop - window.scrollY < 600) {
+      item.classList.add("active");
+    }
+  });
+});
+
+let items2 = document.querySelectorAll(".item-show-top-2");
+
+document.addEventListener("scroll", (event) => {
+  items2.forEach((item) => {
+    if (item.offsetTop - window.scrollY < 300) {
+      item.classList.add("active-2");
+    }
+  });
+});
+
 $(".owl-carousel").owlCarousel({
   loop: true,
   margin: 10,

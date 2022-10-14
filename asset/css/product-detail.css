@@ -42,3 +42,10 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.add-to-cart:hover {
+  color: black;
+  border: #c9c7c7 solid 1px;
+  background-color: white;
+  transition: background-color 0.5s;
+}
