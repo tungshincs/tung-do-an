@@ -3,6 +3,11 @@ $(document).ready(function () {
     $("nav").slideToggle();
   });
 });
+$(document).ready(function () {
+  $(".search-box").click(function () {
+    $(".search-input-box").slideToggle();
+  });
+});
 
 let items = document.querySelectorAll(".item-show-top");
 
