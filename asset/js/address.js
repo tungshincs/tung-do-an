@@ -8,3 +8,9 @@ $(".back-to-index").click(function () {
 $(".go-to-address").click(function () {
   window.location.href = "././address.html";
 });
+$(".link-to-1").click(function () {
+  window.location.href = "././blz002.html";
+});
+$(".link-to-2").click(function () {
+  window.location.href = "././trs003.html";
+});

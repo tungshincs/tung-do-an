@@ -121,6 +121,10 @@ nav {
 
     border-bottom: solid 1px black;
   }
+
+  .nav-hide {
+    display: block;
+  }
 }
 
 a {
@@ -221,6 +225,10 @@ section {
 
 .p-0 {
   padding: 0;
+}
+
+.nav-hide {
+  display: none;
 }
 
 .collection-box {
@@ -364,6 +372,11 @@ section {
 .box-product p {
   font-size: 14px;
   margin-top: 10px;
+}
+
+.link-to-1,
+.link-to-2 {
+  cursor: pointer;
 }
 
 .box-product img:hover {
