@@ -4,27 +4,192 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music player</title>
+    <title>Document</title>
+    <!-- CSS only -->
     <link
-      rel="shortcut icon"
-      href="https://cdn-icons-png.flaticon.com/512/295/295129.png"
-      type="image/x-icon"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <style>
+      .player {
+        position: relative;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .dashboard {
+        padding: 16px 16px 14px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        max-width: 480px;
+        border-bottom: 1px solid #ebebeb;
+      }
+
+      /* HEADER */
+      header {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      header h4 {
+        color: #ec1f55;
+        font-size: 12px;
+      }
+
+      header h2 {
+        color: var(--text-color);
+        font-size: 20px;
+      }
+
+      /* CD */
+      .cd {
+        display: flex;
+        margin: auto;
+        width: 200px;
+      }
+
+      .cd-thumb {
+        width: 100%;
+        padding-top: 100%;
+        border-radius: 50%;
+        background-color: #333;
+        background-size: cover;
+        margin: auto;
+      }
+
+      .cd-thumb.animation {
+        animation: rotating 10s linear infinite;
+      }
+      @keyframes rotating {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* CONTROL */
+      .control {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 18px 0 8px 0;
+      }
+
+      .control .btn {
+        color: #666;
+        padding: 18px;
+        font-size: 18px;
+      }
+
+      .control .btn.active {
+        color: #ec1f55;
+      }
+
+      .control .btn-toggle-play {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        font-size: 24px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ec1f55;
+      }
+
+      .progress {
+        width: 100%;
+        -webkit-appearance: none;
+        height: 6px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: 0.2s;
+        transition: opacity 0.2s;
+      }
+
+      .progress::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 6px;
+        background-color: #ec1f55;
+        cursor: pointer;
+      }
+
+      /* PLAYLIST */
+      .playlist {
+        margin-top: 408px;
+        padding: 12px;
+      }
+
+      .song {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        background-color: #fff;
+        padding: 8px 16px;
+        border-radius: 5px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+
+      .song.active {
+        background-color: #ec1f55;
+      }
+
+      .song:active {
+        opacity: 0.8;
+      }
+
+      .song.active .option,
+      .song.active .author,
+      .song.active .title {
+        color: #fff;
+      }
+
+      .song .thumb {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-size: cover;
+        margin: 0 8px;
+      }
+
+      .song .body {
+        flex: 1;
+        padding: 0 16px;
+      }
+
+      .song .title {
+        font-size: 18px;
+        color: var(--text-color);
+      }
+
+      .song .author {
+        font-size: 12px;
+        color: #999;
+      }
+    </style>
   </head>
   <body>
-    <div id="app-cover">
-      <div id="bg-artwork"></div>
-      <div id="bg-layer"></div>
-      <div id="player"></div>
-    </div>
+    <div id="app"></div>
 
     <script
       crossorigin
@@ -34,7 +199,9 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="./app.jsx" type="text/babel"></script>
+
+    <script src="main.jsx" type="text/babel"></script>
   </body>
 </html>
